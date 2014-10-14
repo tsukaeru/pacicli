@@ -1,0 +1,88 @@
+# API basic configuration. Those are mandatory parameters
+BaseURL  = "https://example.com/paci/v1.0"
+Username = "username"
+Password = "password"
+
+# Server spec example for `pacicli create example`
+[Servers.example]
+[Servers.example.Spec]
+  Name = "example"
+  Hostname = "example"
+  Description = "Example CT"
+  SubscriptionID = 9999999
+  RAMSize = 2048
+  Bandwidth = 100000
+  NoOfPublicIP = 1
+  CustomNs = false
+  [Servers.example.Spec.CPU]
+    Number = 2
+    Power = 1000
+
+  [Servers.example.Spec.VeDisk]
+    Local = true
+    Size = 20
+
+  [Servers.example.Spec.Platform]
+    [Servers.example.Spec.Platform.TemplateInfo]
+      Name = "centos-6-x86_64"
+    [Servers.example.Spec.Platform.OSInfo]
+      Type = "linux-free"
+      Technology = "CT"
+
+  [Servers.example.Spec.BackupSchedule]
+    Name = "daily"
+
+# Firewall rule exsample for `pacicli fwcreate/fwmodify example`
+[[Servers.example.Firewall.Rule]]
+  Name = "http"
+  Protocol = "TCP"
+  LocalPort = 80
+  RemotePort = 0
+  RemoteNet = ["0.0.0.0/0"]
+
+[[Servers.example.Firewall.Rule]]
+  Name = "https"
+  Protocol = "TCP"
+  LocalPort = 443
+  RemotePort = 0
+  RemoteNet = ["0.0.0.0/0"]
+
+[[Servers.example.Firewall.Rule]]
+  Name = "ssh"
+  Protocol = "TCP"
+  LocalPort = 22
+  RemotePort = 0
+  RemoteNet = ["192.0.2.0/24", "198.51.100.0/24"]
+
+# Autoscale rule exsample for `pacicli autoscale-create/autoscale-modify example`
+[[Servers.example.AutoscaleRule]]
+  Metric = "ram"
+  AllowMigration = false
+  AllowRestart = false
+  [Servers.example.AutoscaleRule.Limits]
+    Min = 128
+    Max = 8192
+    Step = 256
+  [Servers.example.AutoscaleRule.Thresholds]
+    [Servers.example.AutoscaleRule.Thresholds.Up]
+      Threshold = 80
+      Period = 300
+    [Servers.example.AutoscaleRule.Thresholds.Down]
+      Threshold = 20
+      Period = 1200
+
+[[Servers.example.AutoscaleRule]]
+  Metric = "cpu"
+  AllowMigration = false
+  AllowRestart = false
+  [Servers.example.AutoscaleRule.Limits]
+    Min = 1000
+    Max = 2000
+    Step = 100
+  [Servers.example.AutoscaleRule.Thresholds]
+    [Servers.example.AutoscaleRule.Thresholds.Up]
+      Threshold = 80
+      Period = 300
+    [Servers.example.AutoscaleRule.Thresholds.Down]
+      Threshold = 20
+      Period = 1200

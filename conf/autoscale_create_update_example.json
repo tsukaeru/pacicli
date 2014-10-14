@@ -1,0 +1,44 @@
+{
+  "AutoscaleRule": [
+    {
+      "Metric": "ram",
+      "AllowMigration": false,
+      "AllowRestart": false,
+      "Limits": {
+        "Min": 128,
+        "Max": 8192,
+        "Step": 256
+      },
+      "Thresholds": {
+        "Up": {
+          "Threshold": 80,
+          "Period": 300
+        },
+        "Down": {
+          "Threshold": 20,
+          "Period": 1200
+        }
+      }
+    },
+    {
+      "Metric": "cpu",
+      "AllowMigration": false,
+      "AllowRestart": false,
+      "Limits": {
+        "Min": 1000,
+        "Max": 2000,
+        "Step": 100
+      },
+      "Thresholds": {
+        "Up": {
+          "Threshold": 80,
+          "Period": 300
+        },
+        "Down": {
+          "Threshold": 20,
+          "Period": 1200
+        }
+      }
+    }
+  ]
+}

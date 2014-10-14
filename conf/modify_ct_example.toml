@@ -1,0 +1,16 @@
+# Example for `pacicli modify example -s conf/modify_ct.toml`
+RAMSize = 2048
+PrimaryDiskSize = 30
+Bandwidth = 100000
+#CustomNs = 0
+[ChangeCPU]
+  Number = 2
+  Power = 1000
+
+# Can't use AddIP and DropIP at the same time
+[ReconfigureIPv4]
+  [ReconfigureIPv4.AddIP]
+    Number = 1
+
+  [ReconfigureIPv4.DropIP]
+    IP = ["192.0.2.100/24", "198.51.100.200/24"]

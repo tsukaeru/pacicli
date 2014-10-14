@@ -1,0 +1,17 @@
+{
+  "RAMSize": 2048,
+  "PrimaryDiskSize": 30,
+  "Bandwidth": 100000,
+  "ChangeCPU": {
+    "Number": 2,
+    "Power": 1000
+  },
+  "ReconfigureIPv4": {
+    "AddIP": {
+      "Number": 1
+    },
+    "DropIP": {
+      "IP": ["192.0.2.100/24", "198.51.100.200/24"]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "Name": "example",
+  "Hostname": "example.com",
+  "Description": "Example CT",
+  "SubscriptionID": 123456789,
+  "RAMSize": 2048,
+  "Bandwidth": 100000,
+  "NoOfPublicIP": 1,
+  "CustomNs": false,
+  "CPU": {
+    "Number": 1,
+    "Power": 2000
+  },
+  "VeDisk": {
+    "Local": true,
+    "Size": 30
+  },
+  "Platform": {
+    "TemplateInfo": {
+      "Name": "centos-6-x86_64"
+    },
+    "OSInfo": {
+      "Type": "linux-free",
+      "Technology": "CT"
+    }
+  },
+  "BackupSchedule": {
+    "Name": "daily"
+  }
+}
