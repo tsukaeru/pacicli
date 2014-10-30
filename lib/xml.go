@@ -112,9 +112,9 @@ type Ve struct {
 		UninstalledOk bool   `xml:"uninstalled-ok,attr"`
 		AppTemplateID int    `xml:"app-template-id,attr"`
 	} `xml:"app-info"`
-	LoadBalancer string `xml:"load-balancer"`
-	SteadyState  string `xml:"steady-state"`
-	//AutoScale                  string `xml:"autoscale"`
+	LoadBalancer               string     `xml:"load-balancer"`
+	SteadyState                string     `xml:"steady-state"`
+	Autoscale                  *Autoscale `xml:"autoscale"`
 	CurrentResourceConsumption struct {
 		CPU            int     `xml:"cpu,attr"`
 		RAM            int     `xml:"ram,attr"`
