@@ -303,23 +303,23 @@ type ResourceConsumptionAndAutoscaleHistory struct {
 		PublicIncomingTraffic  int       `xml:"public-incoming-traffic,attr"`
 		PublicOutgoingTraffic  int       `xml:"public-outgoing-traffic,attr"`
 		NodeSeqNo              int       `xml:"node-seq-no,attr"`
-		NodeTimestamp          Timestamp `xml:"node-timestamp,attr"`
+		NodeTimestamp          string    `xml:"node-timestamp,attr"`
 		PaciTimestamp          Timestamp `xml:"paci-timestamp,attr"`
 		CPU                    int       `xml:"cpu,attr"`
 		RAM                    int       `xml:"ram,attr"`
 		Bandwidth              int       `xml:"bandwidth,attr"`
 	} `xml:"resource-consumption-sample"`
 	AutoscaleEvent struct {
-		Direction     string    `xml:"direction,attr"`
-		RuleVersion   int       `xml:"rule-version,attr"`
-		NodeSeqNo     int       `xml:"node-seq-no,attr"`
-		NodeTimestamp Timestamp `xml:"node-timestamp,attr"`
-		Metric        string    `xml:"metric,attr"`
-		NewValue      int       `xml:"new-value,attr"`
-		NodeUUID      string    `xml:"node-uuid,attr"`
-		Started       string    `xml:"started,attr"`
-		Ended         string    `xml:"ended,attr"`
-		EndedOk       bool      `xml:"ended-ok,attr"`
+		Direction     string `xml:"direction,attr"`
+		RuleVersion   int    `xml:"rule-version,attr"`
+		NodeSeqNo     int    `xml:"node-seq-no,attr"`
+		NodeTimestamp string `xml:"node-timestamp,attr"`
+		Metric        string `xml:"metric,attr"`
+		NewValue      int    `xml:"new-value,attr"`
+		NodeUUID      string `xml:"node-uuid,attr"`
+		Started       string `xml:"started,attr"`
+		Ended         string `xml:"ended,attr"`
+		EndedOk       bool   `xml:"ended-ok,attr"`
 	} `xml:"autoscale-event"`
 	AutoscaleRule []AutoscaleRule `xml:"autoscale-rule"`
 }
