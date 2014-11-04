@@ -4,7 +4,6 @@ import (
 	"encoding/xml"
 	"fmt"
 	"strconv"
-	"time"
 
 	"github.com/codegangsta/cli"
 	"github.com/tatsushid/go-prettytable"
@@ -197,11 +196,11 @@ func doBackupList(c *cli.Context) {
 	}
 	path := "/ve/" + vename + "/backups/"
 
-	from, err := time.Parse(lib.ArgTimestampFormat, c.String("from"))
-	assert(err, "'from' arg value must be in a '"+lib.ArgTimestampFormat+"' format")
+	from, err := lib.ParseArgTimestampFormat(c.String("from"))
+	assert(err, "'from' arg value must be in "+lib.ArgTimestampFormatStr()+" format")
 
-	to, err := time.Parse(lib.ArgTimestampFormat, c.String("to"))
-	assert(err, "'to' arg value must be in a '"+lib.ArgTimestampFormat+"' format")
+	to, err := lib.ParseArgTimestampFormat(c.String("to"))
+	assert(err, "'to' arg value must be in "+lib.ArgTimestampFormatStr()+" format")
 
 	path += c.String("from") + "/" + c.String("to")
 

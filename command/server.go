@@ -7,7 +7,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/codegangsta/cli"
 	"github.com/tatsushid/go-prettytable"
@@ -599,11 +598,11 @@ func doHistory(c *cli.Context) {
 
 	path := "/ve/" + vename + "/history/"
 	if len(c.String("from")) > 0 && len(c.String("to")) > 0 {
-		_, err := time.Parse(lib.ArgTimestampFormat, c.String("from"))
-		assert(err, "'from' arg value must be in a '"+lib.ArgTimestampFormat+"' format")
+		_, err := lib.ParseArgTimestampFormat(c.String("from"))
+		assert(err, "'from' arg value must be in "+lib.ArgTimestampFormatStr()+" format")
 
-		_, err = time.Parse(lib.ArgTimestampFormat, c.String("to"))
-		assert(err, "'to' arg value must be in a '"+lib.ArgTimestampFormat+"' format")
+		_, err = lib.ParseArgTimestampFormat(c.String("to"))
+		assert(err, "'to' arg value must be in "+lib.ArgTimestampFormatStr()+" format")
 
 		path += c.String("from") + "/" + c.String("to")
 	} else if c.Int("num-records") > 0 {
@@ -659,11 +658,11 @@ func doUsage(c *cli.Context) {
 	}
 	path := "/ve/" + vename + "/usage/"
 
-	from, err := time.Parse(lib.ArgTimestampFormat, c.String("from"))
-	assert(err, "'from' arg value must be in a '"+lib.ArgTimestampFormat+"' format")
+	from, err := lib.ParseArgTimestampFormat(c.String("from"))
+	assert(err, "'from' arg value must be in "+lib.ArgTimestampFormatStr()+" format")
 
-	to, err := time.Parse(lib.ArgTimestampFormat, c.String("to"))
-	assert(err, "'to' arg value must be in a '"+lib.ArgTimestampFormat+"' format")
+	to, err := lib.ParseArgTimestampFormat(c.String("to"))
+	assert(err, "'to' arg value must be in "+lib.ArgTimestampFormatStr()+" format")
 
 	path += c.String("from") + "/" + c.String("to")
 

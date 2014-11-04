@@ -91,8 +91,37 @@ type Timestamp struct {
 
 const (
 	DataTimestampFormat string = "2006-01-02 15:04:05.000000-0700"
-	ArgTimestampFormat  string = "2006-01-02 15:04 MST"
 )
+
+var ArgTimestampFormats []string = []string{"2006-01-02 15:04 MST", "2006-01-02 15:04 -0700"}
+
+func ParseArgTimestampFormat(s string) (time.Time, error) {
+	var err error
+	var tm time.Time
+	for _, e := range ArgTimestampFormats {
+		tm, err = time.Parse(e, s)
+		if err == nil {
+			return tm, nil
+		}
+	}
+	return time.Time{}, errors.New("the string didn't match any timestamp format")
+}
+
+func ArgTimestampFormatStr() (s string) {
+	if len(ArgTimestampFormats) == 0 {
+		return s
+	}
+	s = "'" + ArgTimestampFormats[0] + "'"
+	last := len(ArgTimestampFormats) - 2
+	for i, e := range ArgTimestampFormats[1:] {
+		if i == last {
+			s += fmt.Sprintf(` or '%s'`, e)
+		} else {
+			s += fmt.Sprintf(`, '%s'`, e)
+		}
+	}
+	return s
+}
 
 func (t Timestamp) String() string {
 	b, _ := t.MarshalText()
