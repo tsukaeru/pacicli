@@ -112,12 +112,12 @@ var numRecordsFlag = cli.IntFlag{
 
 var fromDatetimeFlag = cli.StringFlag{
 	Name:  "from, f",
-	Usage: "Specify history start date and time in\n\t'" + lib.ArgTimestampFormatStr() + "' format",
+	Usage: "Specify history start date and time in\n\t" + lib.ArgTimestampFormatStr() + " format",
 }
 
 var toDatetimeFlag = cli.StringFlag{
 	Name:  "to, t",
-	Usage: "Specify history end date and time in\n\t'" + lib.ArgTimestampFormatStr() + "' format",
+	Usage: "Specify history end date and time in\n\t" + lib.ArgTimestampFormatStr() + " format",
 }
 
 var settingFlag = cli.StringFlag{
