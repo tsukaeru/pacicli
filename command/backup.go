@@ -192,7 +192,7 @@ func doBackupList(c *cli.Context) {
 	vename := c.Args().Get(0)
 
 	if len(c.String("from")) == 0 || len(c.String("to")) == 0 {
-		displayErrorAndExit("This command must be used with a pair of --from and --to flags arguments or --num-records flag argument. Please see '" + c.App.Name + " help " + c.Command.Name + "'")
+		displayErrorAndExit("This command must be used with a pair of --from and --to flags arguments. Please see '" + c.App.Name + " help " + c.Command.Name + "'")
 	}
 	path := "/ve/" + vename + "/backups/"
 
