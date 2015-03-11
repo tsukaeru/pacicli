@@ -51,7 +51,7 @@ func (c *Client) SendRequest(method, path string, data io.Reader) (*Response, er
 	req.Header.Add("Content-Type", "application/xml")
 	req.SetBasicAuth(c.username, c.password)
 
-	cli := &http.Client{}
+	cli := http.DefaultClient
 	resp, err := cli.Do(req)
 	if err != nil {
 		return nil, err
