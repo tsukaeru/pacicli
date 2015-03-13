@@ -28,6 +28,6 @@ func main() {
 	app.EnableBashCompletion = true
 
 	cli.CommandHelpTemplate = command.CommandHelpTemplate
-	cli.HelpPrinter = command.HelpPrinter(app.Name)
+	cli.HelpPrinter = command.HelpPrinter(app)
 	app.Run(os.Args)
 }

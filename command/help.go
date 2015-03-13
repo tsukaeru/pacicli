@@ -2,6 +2,8 @@ package command
 
 import (
 	"strings"
+	"text/tabwriter"
+	"text/template"
 
 	"github.com/codegangsta/cli"
 )
@@ -25,8 +27,16 @@ const (
 	helpPrefixSpaces = "   "
 )
 
-func HelpPrinter(appName string) func(templ string, data interface{}) {
-	origPrinter := cli.HelpPrinter
+func HelpPrinter(a *cli.App) func(templ string, data interface{}) {
+	commonPrinter := func(templ string, data interface{}) {
+		w := tabwriter.NewWriter(a.Writer, 0, 8, 1, '\t', 0)
+		t := template.Must(template.New("help").Parse(templ))
+		err := t.Execute(w, data)
+		if err != nil {
+			panic(err)
+		}
+		w.Flush()
+	}
 	return func(templ string, data interface{}) {
 		if cmd, ok := data.(cli.Command); ok {
 			type Help struct {
@@ -36,7 +46,7 @@ func HelpPrinter(appName string) func(templ string, data interface{}) {
 			}
 			var d Help
 			d.Command = cmd
-			d.AppName = appName
+			d.AppName = a.Name
 			if s, ok := commandSynopsisses[cmd.Name]; ok {
 				d.Synopsis = s
 			}
@@ -45,9 +55,9 @@ func HelpPrinter(appName string) func(templ string, data interface{}) {
 				desc += helpPrefixSpaces + strings.Trim(ln, helpTrimSpaces) + "\n"
 			}
 			d.Description = strings.TrimRight(desc, helpTrimSpaces)
-			origPrinter(templ, d)
+			commonPrinter(templ, d)
 		} else {
-			origPrinter(templ, data)
+			commonPrinter(templ, data)
 		}
 	}
 
